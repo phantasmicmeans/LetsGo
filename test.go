@@ -2,11 +2,14 @@ package main
 
 import (
 	"fmt"
+	"math"
 )
 
 func main() {
 	fmt.Println("vim-go")
 	ifTest()
+	mathTest()
+	stringTest()
 }
 
 /* Variable */
@@ -135,4 +138,29 @@ func switchTest2() {
 	default:
 		println("No Hope")
 	}
+}
+
+func mathTest() {
+	println("Happy", math.Pi, "Day")
+	fmt.Printf("Now you have %g problems \n", math.Nextafter(2, 3))
+
+	fmt.Println(addTest(42, 13))
+	fmt.Println(addTest2(42, 13))
+}
+
+func stringTest() {
+	a, b := swap("hello", "world")
+	fmt.Println(a, b)
+}
+
+func addTest(x int, y int) int {
+	return x + y
+}
+
+func addTest2(x, y int) int {
+	return x + y
+}
+
+func swap(x, y string) (string, string) {
+	return y, x
 }
