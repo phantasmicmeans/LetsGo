@@ -43,7 +43,7 @@ func structLiterals() {
 	fmt.Println(p, q, r, s)
 }
 
-func main() {
+func testMain() {
 	structTest()
 	pointerStructTest()
 	structLiterals()
