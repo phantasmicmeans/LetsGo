@@ -62,7 +62,7 @@ func mutatingMaps() {
 	fmt.Println("The value : ", v, " Present?", ok)
 }
 
-func main() {
+func testMain() {
 	mapTest()
 	fmt.Println()
 
