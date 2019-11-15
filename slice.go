@@ -72,6 +72,46 @@ func printSlice(s string, x []int) {
 	fmt.Printf("%s len = %d cap = %d %v \n", s, len(x), cap(x), x)
 }
 
+/*
+ for 반복문에서 range를 사용하면 슬라이스나 맵을 순회(iterates)할 수 있다.
+*/
+func rangeTest() {
+	var pow = []int{1, 2, 4, 8, 16, 32, 64, 128}
+	for i, v := range pow {
+		fmt.Printf("2 * %d = %d\n", i, v)
+	}
+	fmt.Println()
+
+	var pow2 = []string{"a", "b", "c", "d", "e", "f", "g"}
+	for i, v := range pow2 {
+		fmt.Printf("pow2[%d] = %s\n", i, v)
+	}
+	fmt.Println()
+}
+
+/*
+ _를 이용해서 index나 value를 무시할 수 있다. 인덱스만 필요하다면 "value"를 제거하면 된다.
+*/
+func rangeTest2() {
+	pow := make([]int, 10) // len = 10
+	for i := range pow {
+		pow[i] = 1 << uint(i)
+		fmt.Println("pow[%d] = ", pow[i])
+	}
+	fmt.Println()
+
+	/* index 제거, _를 활용 */
+	for _, value := range pow {
+		fmt.Printf("%d\n", value)
+	}
+	fmt.Println()
+
+	/* value 제거 */
+	for i := range pow {
+		fmt.Printf("%d\n", i)
+	}
+}
+
 func main() {
 	fmt.Println("[sliceBasic]")
 	sliceBasicTest()
@@ -84,4 +124,10 @@ func main() {
 
 	fmt.Println("[emptySlice]")
 	emptySlice()
+
+	fmt.Println("[rangeTest]")
+	rangeTest()
+
+	fmt.Println("[rangeTest2]")
+	rangeTest2()
 }
