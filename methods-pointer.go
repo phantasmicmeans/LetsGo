@@ -13,6 +13,10 @@ func (v Vertex) Abs() float64 {
 	return math.Sqrt(v.X*v.X + v.Y*v.Y)
 }
 
+func (v *Vertex) AbsP() float64 {
+	return math.Sqrt(v.X*v.X + v.Y*v.Y)
+}
+
 /**
  You can declare methods with pointer receivers
 **/
@@ -46,6 +50,12 @@ func ScaleFunc(v *Vertex, f float64) {
 	v.Y = v.Y * f
 }
 
+/**
+Choosing a value or pointer receiver
+- Pointer Receiver 를 사용해야하는 2가지 이유
+1. 첫번째는 method가 receiver points를 통해 value를 변경할 수 있다.
+2. 두번째는 each method call 마다 value를 copy하지 않아도 된다.
+**/
 func main() {
 	var v Vertex = Vertex{3, 4}
 	v.Scale(10)
@@ -68,4 +78,11 @@ func main() {
 
 	fmt.Println(ScaleFunc2(v2, 5))
 	fmt.Println(ScaleFunc2(*p2, 5))
+
+	/* 일반적으로 모든 메소드는 둘다 value 타입이거나 둘다 pointer 타입을 사용한다. 두개를 함께 사용하지 않는다. */
+	var v3 Vertex = Vertex{4, 5}
+	fmt.Printf("Before scaling: %+v, Abs: %v\n", v3, v3.AbsP())
+	v3.Scale(5)
+	fmt.Printf("After scaling: %+v, Abs: %v\n", v3, v3.AbsP())
+
 }
