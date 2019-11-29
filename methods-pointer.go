@@ -21,13 +21,26 @@ func (v *Vertex) Scale(f float64) {
 	v.Y = v.Y * f
 }
 
-/* Pointer Receiver */
+/* Value Receiver -> Value / Pointer 둘다 가능 */
+func (v Vertex) ScaleV(f float64) float64 {
+	v.X = v.X * f
+	v.Y = v.Y * f
+	return v.X
+}
+
+func ScaleFunc2(v Vertex, f float64) float64 {
+	v.X = v.X * f
+	v.Y = v.Y * f
+	return v.X
+}
+
+/* Pointer Receiver -> Value / Pointer 둘다 가능 */
 func (v *Vertex) Scale2(f float64) {
 	v.X = v.X * f
 	v.Y = v.Y * f
 }
 
-/* Pointer Argument */
+/* Pointer Argument -> Pointer 만 가능 */
 func ScaleFunc(v *Vertex, f float64) {
 	v.X = v.X * f
 	v.Y = v.Y * f
@@ -39,7 +52,7 @@ func main() {
 	fmt.Println(v.Abs())
 
 	// function with Pointer Argument 는 must take a pointer
-	ScaleFunc(v, 5) // Compile Error
+	//ScaleFunc(v, 5) // Compile Error
 	//cannot use v (type Vertex) as type *Vertex in argument to ScaleFun
 	ScaleFunc(&v, 5) // OK
 
@@ -47,4 +60,12 @@ func main() {
 	v.Scale2(5) // value -> OK
 	p := &v
 	p.Scale2(10) // pointer -> OK
+
+	var v2 Vertex = Vertex{3, 4}
+	fmt.Println(v2.ScaleV(5))
+	p2 := &v2
+	fmt.Println(p2.ScaleV(5))
+
+	fmt.Println(ScaleFunc2(v2, 5))
+	fmt.Println(ScaleFunc2(*p2, 5))
 }
