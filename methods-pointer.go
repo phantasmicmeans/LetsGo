@@ -56,7 +56,7 @@ Choosing a value or pointer receiver
 1. 첫번째는 method가 receiver points를 통해 value를 변경할 수 있다.
 2. 두번째는 each method call 마다 value를 copy하지 않아도 된다.
 **/
-func main() {
+func testMain() {
 	var v Vertex = Vertex{3, 4}
 	v.Scale(10)
 	fmt.Println(v.Abs())
