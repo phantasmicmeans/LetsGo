@@ -15,17 +15,8 @@ func adder() func(x int) int {
 	}
 }
 
-func adder2() func(x int) int {
-	sum2 := 0
-	return func(x int) int {
-		sum2 += x
-		fmt.Println("sum2 :", sum2)
-		return sum2
-	}
-}
-
-func testmain() {
-	pos, neg := adder(), adder2()
+func testMain() {
+	pos, neg := adder(), adder()
 	for i := 0; i < 10; i++ {
 		fmt.Println(
 			pos(i),

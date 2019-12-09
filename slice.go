@@ -121,7 +121,7 @@ func rangeTest2() {
 	}
 }
 
-func main() {
+func testMain() {
 	fmt.Println("[sliceBasic]")
 	sliceBasicTest()
 
