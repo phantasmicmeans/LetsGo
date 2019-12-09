@@ -15,7 +15,15 @@ type Vertex struct {
 }
 
 var m map[string]Vertex
+var m2 map[string]Vertex
 
+func mapTest2() {
+	m2 = make(map[string]Vertex)
+	m["hello"] = Vertex {
+		40.342, -34.4324,
+	}
+	fmt.Println(m["sangmin"])
+}
 func mapTest() {
 	m = make(map[string]Vertex)
 	m["sangmin"] = Vertex{

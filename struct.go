@@ -43,6 +43,15 @@ func structLiterals() {
 	fmt.Println(p, q, r, s)
 }
 
+func structLiterals2() {
+	var (
+		p = Vertex{1, 2}
+		q = &Vertex{1, 2}
+		r = Vertex{X: 1}
+		s = Vertex{}
+	)
+}
+
 func testMain() {
 	structTest()
 	pointerStructTest()

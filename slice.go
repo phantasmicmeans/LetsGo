@@ -16,6 +16,15 @@ func sliceBasicTest() {
 	fmt.Println("\n")
 }
 
+func sliceBasicTest2() {
+	p := []int{1, 2, 3, 4, 5}
+	fmt.Println("p == ", p)
+
+	for i := 0; i < len(p); i++ {
+		fmt.Printf("p[%d] == %d\n", i, p[i])
+	}
+}
+
 /*
   슬라이스는 재분할 할 수도 있고, 같은 배열을 가리키는(point) 새로운 슬라이스를 만들 수도 있다.
 */

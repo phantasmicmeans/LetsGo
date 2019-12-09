@@ -7,7 +7,7 @@ import "fmt"
  adder function은 클로져(closure)를 반환합니다.
  각각의 클로져는 자신만의 sum 변수를 가집니다.
 */
-func adder() func(int) int {
+func adder() func(x int) int {
 	sum := 0
 	return func(x int) int {
 		sum += x
@@ -15,8 +15,17 @@ func adder() func(int) int {
 	}
 }
 
-func main() {
-	pos, neg := adder(), adder()
+func adder2() func(x int) int {
+	sum2 := 0
+	return func(x int) int {
+		sum2 += x
+		fmt.Println("sum2 :", sum2)
+		return sum2
+	}
+}
+
+func testmain() {
+	pos, neg := adder(), adder2()
 	for i := 0; i < 10; i++ {
 		fmt.Println(
 			pos(i),
