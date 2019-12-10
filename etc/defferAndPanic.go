@@ -1,6 +1,9 @@
 package main
 
-import "os"
+import (
+	"fmt"
+	"os"
+)
 
 /*
  1. 지연실행 defer
@@ -12,7 +15,13 @@ import "os"
  이러한 panic 모드 실행 방식은 다시 상위 함수에도 똑같이 적용된다.
  계속 call stack을 타고 올라가며 적용된다.
  그리고 마지막에는 program이 error를 내고 종료하게 된다.
+
+ 3. recover 함수
+ recover()은 panic()에 의한 패닉상태를 다시 정상상태로 되돌리는 함수이다.
+ 위의 panic 예제에서는 main 함수에서 println()이 호출되지 못하고 crash되지만, recover()를 사용하면
+ panic 상태를 제거하고 다음 문장 호출 가능
 */
+
 func defferTest() {
 	f, err := os.Open("C:/Users/SangMin/Desktop/golang/LetsGo/etc/test.txt")
 	if err != nil {
@@ -34,6 +43,11 @@ func panicTest() {
 	println("Done") // 이 문장 실행 안됨
 }
 
+func panicTestWithRecover() {
+	openFileWithRecover("Invalid.txt")
+	println("Done") // 이 문장 실행 안됨
+}
+
 func openFile(fn string) {
 	f, err := os.Open(fn)
 	if err != nil {
@@ -43,7 +57,27 @@ func openFile(fn string) {
 	defer f.Close()
 }
 
+func openFileWithRecover(fn string) {
+	defer func() { // defer function, execute after panic()
+		if r := recover(); r != nil { // r에 의해 panic 상태 제거
+			fmt.Println("OPEN ERROR", r)
+		}
+	}()
+
+	f, err := os.Open(fn)
+	if err != nil {
+		panic(err)
+	}
+
+	defer f.Close()
+}
+
 func main() {
+	var number int = 1
 	defferTest()
-	panicTest()
+	if number == 0 {
+		panicTest()
+	} else {
+		panicTestWithRecover() // println("Done") execute successfully
+	}
 }
