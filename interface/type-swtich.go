@@ -19,7 +19,7 @@ the underlying value and a boolean value that reports whether the assertion succ
   t, ok := i.(T)
 */
 
-func main() {
+func testmain() {
 	var i interface{} = "hello"
 
 	s := i.(string)

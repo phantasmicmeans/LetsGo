@@ -16,7 +16,7 @@ Empty interfaces are used by code that handles values of unknown type.
 For example, fmt.Println takes any number of arguments of type interfaces{}.
 */
 
-func main() {
+func testmain() {
 	var i interface{}
 	describe(i)
 

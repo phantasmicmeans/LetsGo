@@ -20,7 +20,7 @@ func (t T) M() {
 	fmt.Println(t.S)
 }
 
-func main() {
+func testmain() {
 	var i I = T{"hello"}
 	i.M()
 }

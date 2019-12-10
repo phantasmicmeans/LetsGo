@@ -53,7 +53,7 @@ func describe(i I) {
 	fmt.Printf("(%v, %T)\n", i, i)
 }
 
-func main() {
+func testmain() {
 	var i I
 	i = &T{"Hello M()"}
 	describe(i)
