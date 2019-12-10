@@ -14,3 +14,19 @@ Go Runtime 상에서 관리된느 작업단위인 여러 goroutine은 종종 하
 Memory측면에서도 일반 OS Thread가 1MB의 stack을 갖는 반면, goroutine은 이보다 훨씬 작은 몇 KB의 stack을 갖는다고 한다. 또한 이는 필요시 동적으로 증가한다. 
 
 **Go Runtime은 goroutine을 관리하면서 Go Channel을 통해 goroutine간 통신을 쉽게 할 수 있도록 한다.**
+
+## Multi CPU Core 처리 
+Go는 default로 1개의 CPU 사용. 여러개의 goroutine을 만들더라도 1개의 CPU에서 작업을 시분할하여 Concurrent하게 처리한다.
+
+만약 machine이 복수의 CPU 보유시, Go 프로그램을 Parallel하게 할 수 있다. 아래와 같이 하면 된다.
+
+```golang 
+package main
+
+func main() {
+    runtime.GOMAXPROCS(4) // 4개의 CPU 사용 
+}
+``` 
+
+주의할 점 
+- **Concurrecy와 Paralleisim은 다르다.**
