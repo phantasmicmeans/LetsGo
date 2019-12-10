@@ -35,5 +35,4 @@ func testmain() {
 
 	// 익명함수 goroutine
 	// go keyword 뒤에 익명함수를 바로 정의함, 이는 익명함수를 비동기로 실행
-
 }
